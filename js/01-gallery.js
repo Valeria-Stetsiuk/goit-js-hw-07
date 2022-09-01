@@ -27,6 +27,14 @@ function onOpenModel(evt) {
 
   const instance = basicLightbox.create(`
     <img  src= "${evt.target.dataset.source}" width="800" height="600"/>
+    {
+      onShow: () => {
+        document.addEventListener("keydown", onCloseEscape);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", onCloseEscape);
+      },
+    }
 `);
   instance.show();
 
